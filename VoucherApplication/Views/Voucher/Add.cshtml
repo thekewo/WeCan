@@ -1,0 +1,49 @@
+﻿@using VoucherApplication.Models.Enums;
+@using VoucherApplication.Models.ViewModels;
+@using VoucherApplication.Models.Results;
+@model AddVoucherViewModel
+@{
+}
+
+<h1>Add Voucher</h1>
+<form method="post" action="Add" class="mt-5">
+    <div class="mb-3">
+        <label for="" class="form-label">Id</label>
+        <input type="number" class="form-control" asp-for="Id" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Voucher Type</label>
+        <select type="text" class="form-control" asp-for="ServiceType" asp-items="@Html.GetEnumSelectList<VoucherType>()" required></select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Expiration Date</label>
+        <input type="date" class="form-control" asp-for="ExpirationDate">
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Quantity</label>
+        <input type="number" class="form-control" asp-for="Quantity" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Service Type</label>
+        <select type="text" class="form-control" asp-for="ServiceType" asp-items="@Html.GetEnumSelectList<ServiceType>()" required></select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+@{
+    if (@ViewBag.Success != null)
+    {
+        if (@ViewBag.Success)
+        {
+            <div class="alert alert-success voucer-alert">
+                <p>@ViewBag.Message</p>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger voucer-alert">
+                <p>@ViewBag.Message</p>
+            </div>
+        }
+    }
+}
